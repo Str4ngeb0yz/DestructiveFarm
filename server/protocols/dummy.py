@@ -1,7 +1,7 @@
-from pprint import pprint
-import string
-from server.models import FlagStatus, SubmitResult
 import random
+import string
+
+from server.models import FlagStatus, SubmitResult
 
 
 def submit_flags(flags, config):

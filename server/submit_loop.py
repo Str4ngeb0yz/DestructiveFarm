@@ -2,9 +2,9 @@
 
 import importlib
 import random
-from sqlite3 import Connection
 import time
 from collections import defaultdict
+from sqlite3 import Connection
 from typing import List
 
 from server import app, database, metrics, reloader
