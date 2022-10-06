@@ -5,16 +5,17 @@ from typing import List
 import requests
 import threading
 
-DF_HOST = "10.69.42.2"
-
+DF_HOST = ""
+DF_PORT = 0
 
 SPLOIT_NAME = ""
 SERVICE_NAME = ""
 
 # Make sure fields are set
-assert SPLOIT_NAME and SERVICE_NAME
+assert DF_HOST and SPLOIT_NAME and SERVICE_NAME
+assert DF_PORT > 0
 
-resp = requests.get(f"http://{DF_HOST}:5000/api/get_config")
+resp = requests.get(f"http://{DF_HOST}:{DF_PORT}/api/get_config")
 assert resp.status_code == 200
 
 config = resp.json()
@@ -29,18 +30,19 @@ def send_flags(team_name: str, flags: List[str]):
     print(f"[{threading.current_thread().name}] Sending {len(sending)} flags...")
 
     requests.post(
-        f"http://{DF_HOST}:5000/api/post_flags",
+        f"http://{DF_HOST}:{DF_PORT}/api/post_flags",
         headers={"Content-type": "application/json"},
         json=sending,
     )
     print(f"[{threading.current_thread().name}] OK.")
 
-
+#CHANGEME
 def get_flag_ids():
-    try:
-        return requests.get("http://10.1.0.2/api/client/attack_data/").json()
-    except:
-        return []
+    #try:
+    #    return requests.get("http://PATH/TO/FLAG_IDS/").json()
+    #except:
+    #    return []
+    pass
 
 
 def loop(team_name: str, ip: str, flag_ids: List[str]):
